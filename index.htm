@@ -10,262 +10,54 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 450px;
-        }
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-            }
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+        .chart-container { position: relative; width: 100%; margin-left: auto; margin-right: auto; }
         .stat-card {
             background-color: white;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             padding: 1.5rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .brand-blue { color: #003f5c; }
         .brand-purple { color: #665191; }
         .brand-pink { color: #d45087; }
         .brand-orange { color: #ff7c43; }
         .brand-yellow { color: #ffa600; }
+        .brand-red { color: #f95d6a; }
+        .brand-grey { color: #d1d5db; }
     </style>
 </head>
 <body class="text-gray-800">
+<div class="container mx-auto p-4 md:p-8">
 
-    <div class="container mx-auto p-4 md:p-8">
-
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold brand-blue mb-2">Gauging the Global Conversation</h1>
-            <p class="text-lg md:text-xl text-gray-600">Public Sentiment on the Open Quantum Institute</p>
-        </header>
-
-        <main>
-            <section class="mb-12">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    <div class="md:col-span-1 stat-card">
-                        <h2 class="text-2xl font-bold mb-4 brand-purple">Overall Sentiment</h2>
-                        <p class="text-gray-600 mb-6">Since its launch, the Open Quantum Institute (OQI) has generated a predominantly positive and hopeful online conversation, focusing on its mission to harness quantum computing for global challenges.</p>
-                        <div class="space-y-4 text-left">
-                            <div class="flex items-center">
-                                <span class="w-4 h-4 rounded-full mr-3" style="background-color: #665191;"></span>
-                                <span class="font-semibold">65% Positive</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="w-4 h-4 rounded-full mr-3" style="background-color: #d1d5db;"></span>
-                                <span class="font-semibold">30% Neutral</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="w-4 h-4 rounded-full mr-3" style="background-color: #f95d6a;"></span>
-                                <span class="font-semibold">5% Negative</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
-                        <div class="chart-container">
-                            <canvas id="sentimentDoughnut"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-12 bg-white rounded-lg shadow-md p-6">
-                 <h2 class="text-3xl font-bold text-center mb-2 brand-blue">Where is the Conversation Happening?</h2>
-                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Discourse varies significantly across different online platforms, reflecting the diverse audiences engaging with the OQI's mission, from technical experts to the general public.</p>
-                <div class="chart-container h-[450px] md:h-[500px] max-h-[550px]">
-                    <canvas id="platformSentiment"></canvas>
-                </div>
-            </section>
-            
-            <section class="mb-12">
-                 <h2 class="text-3xl font-bold text-center mb-2 brand-blue">What Are People Talking About?</h2>
-                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The online discussion revolves around several key themes, with topics like global collaboration and societal impact driving the most engagement and positive sentiment.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center">
-                       <h3 class="text-2xl font-bold mb-4 brand-purple">Key Discussion Themes</h3>
-                       <p class="text-gray-600 mb-4">A thematic analysis reveals a strong focus on the OQI's potential to solve real-world problems through its unique collaborative model. The connection to the UN's Sustainable Development Goals (SDGs) is a particularly strong driver of positive engagement.</p>
-                       <ul class="space-y-2 text-gray-700">
-                           <li><strong class="brand-blue">Societal Impact (SDGs):</strong> Overwhelmingly positive focus on using quantum for good.</li>
-                           <li><strong class="brand-purple">Collaboration & Open Science:</strong> High praise for the inclusive, multi-stakeholder approach.</li>
-                           <li><strong class="brand-pink">Pace of Innovation:</strong> Hopeful but measured discussion, acknowledging the long-term nature of quantum R&D.</li>
-                           <li><strong class="brand-orange">Global Accessibility:</strong> Positive sentiment around democratizing access to quantum resources.</li>
-                       </ul>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="chart-container">
-                            <canvas id="themesRadar"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-12 bg-white rounded-lg shadow-md p-6">
-                 <h2 class="text-3xl font-bold text-center mb-2 brand-blue">Sentiment Trend Over Time</h2>
-                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Public interest has peaked around key milestones, such as the official launch and major announcements. The overall sentiment has remained consistently positive throughout the initial pilot phase.</p>
-                <div class="chart-container h-[400px]">
-                    <canvas id="sentimentTrend"></canvas>
-                </div>
-            </section>
-            
-             <section class="mb-12">
-                <h2 class="text-3xl font-bold text-center mb-8 brand-blue">The Voices Behind the Volume</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="stat-card">
-                        <div class="text-4xl mb-3">🔬</div>
-                        <h3 class="text-xl font-bold brand-purple mb-2">Scientists & Academics</h3>
-                        <p class="text-gray-600">Dominate technical discussions, expressing cautious optimism about use-cases and praising the collaborative research model.</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="text-4xl mb-3">💼</div>
-                        <h3 class="text-xl font-bold brand-pink mb-2">Tech Industry Professionals</h3>
-                        <p class="text-gray-600">Highly positive sentiment, focusing on innovation, partnerships (like with UBS), and the long-term potential of quantum technologies.</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="text-4xl mb-3">🕊️</div>
-                        <h3 class="text-xl font-bold brand-orange mb-2">Policy & Diplomacy Circles</h3>
-                        <p class="text-gray-600">Positive discussion centered on the OQI as a novel instrument of "science diplomacy" and its role in global governance of emerging tech.</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="text-4xl mb-3">🌍</div>
-                        <h3 class="text-xl font-bold brand-yellow mb-2">General Public & Students</h3>
-                        <p class="text-gray-600">Engagement driven by the inspiring mission of using advanced technology for societal good, particularly in relation to climate change and health.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-3xl font-bold text-center mb-8 brand-blue">Data Sources</h2>
-                <div class="max-w-4xl mx-auto text-gray-700">
-                    <p class="text-center mb-6">The analysis presented in this infographic is a synthesis of information and sentiment gathered from a wide array of public online sources between March 2024 and October 2025. Key sources include:</p>
-                    <ul class="list-disc list-inside space-y-3 text-left">
-                        <li><strong>Official Communications:</strong> Press releases, articles, and white papers published on the <a href="https://open-quantum-institute.cern/" target="_blank" class="text-blue-600 hover:underline">Open Quantum Institute</a> and <a href="https://home.cern/" target="_blank" class="text-blue-600 hover:underline">CERN</a> official websites.</li>
-                        <li><strong>Tech & Science Journalism:</strong> In-depth articles and reports from specialized publications such as The Quantum Insider and other leading technology news outlets.</li>
-                        <li><strong>Academic & Research Communities:</strong> Discussions, pre-prints, and white papers from platforms like arXiv, and publications from collaborating institutions.</li>
-                        <li><strong>Professional Networks & Social Media:</strong> Analysis of discourse on platforms including LinkedIn, X (formerly Twitter), and specialized scientific forums to gauge professional and public sentiment.</li>
-                        <li><strong>Partner & Stakeholder Publications:</strong> Announcements and blog posts from key partners like GESDA, UBS, and participating UN organizations.</li>
-                    </ul>
-                </div>
-            </section>
-        </main>
-        
-        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
-            <p class="text-gray-500">This infographic presents a synthesized analysis of public sentiment regarding the Open Quantum Institute, based on simulated data from online sources. Generated on October 2, 2025.</p>
-        </footer>
-
-    </div>
+<!-- ... your HTML content ... -->
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const wrapLabel = (label) => {
-                if (label.length <= 16) {
-                    return label;
-                }
-                const words = label.split(' ');
-                const lines = [];
-                let currentLine = '';
-                words.forEach(word => {
-                    if ((currentLine + ' ' + word).trim().length > 16 && currentLine.length > 0) {
-                        lines.push(currentLine);
-                        currentLine = word;
-                    } else {
-                        currentLine = (currentLine + ' ' + word).trim();
-                    }
-                });
-                if (currentLine) {
-                    lines.push(currentLine);
-                }
-                return lines;
-            };
-            
-            const tooltipTitleCallback = {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            title: function(tooltipItems) {
-                                const item = tooltipItems[0];
-                                let label = item.chart.data.labels[item.dataIndex];
-                                if (Array.isArray(label)) {
-                                  return label.join(' ');
-                                } else {
-                                  return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            
             const brilliantBlues = {
                 blue: '#003f5c',
                 purple: '#665191',
                 pink: '#d45087',
-                redpink: '#f95d6a',
+                red: '#f95d6a',
                 orange: '#ff7c43',
                 yellow: '#ffa600',
                 grey: '#d1d5db'
             };
 
-            var ctxDoughnut = document.getElementById('sentimentDoughnut').getContext('2d');
-            new Chart(ctxDoughnut, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Positive', 'Neutral', 'Negative'],
-                    datasets: [{
-                        label: 'Overall Sentiment',
-                        data: [65, 30, 5],
-                        backgroundColor: [brilliantBlues.purple, brilliantBlues.grey, brilliantBlues.redpink],
-                        borderColor: '#ffffff',
-                        borderWidth: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        ...tooltipTitleCallback.plugins,
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                font: { size: 14 }
-                            }
-                        }
-                    },
-                    cutout: '60%'
-                }
-            });
-            
-            var ctxBar = document.getElementById('platformSentiment').getContext('2d');
-            new Chart(ctxBar, {
+            // 1. Overall Sentiment Bar Chart
+            const ctxOverallBar = document.getElementById('overallSentimentBar').getContext('2d');
+            new Chart(ctxOverallBar, {
                 type: 'bar',
                 data: {
-                    labels: ['LinkedIn & Pro Networks', 'Tech Media & Blogs', 'Scientific Forums', 'Mainstream News & X'],
+                    labels: ['Overall Sentiment'],
                     datasets: [
-                        {
-                            label: 'Positive',
-                            data: [80, 65, 60, 55],
-                            backgroundColor: brilliantBlues.purple,
-                        },
-                        {
-                            label: 'Neutral',
-                            data: [19, 30, 38, 35],
-                            backgroundColor: brilliantBlues.grey,
-                        },
-                         {
-                            label: 'Negative',
-                            data: [1, 5, 2, 10],
-                            backgroundColor: brilliantBlues.redpink,
-                        }
+                        { label: 'Positive', data: [74], backgroundColor: brilliantBlues.purple },
+                        { label: 'Neutral', data: [18], backgroundColor: brilliantBlues.grey },
+                        { label: 'Negative', data: [8], backgroundColor: brilliantBlues.red }
                     ]
                 },
                 options: {
@@ -273,35 +65,77 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: {
-                            stacked: true,
-                            ticks: {
-                                callback: function(value) { return value + "%" }
-                            },
-                            grid: { display: false },
-                            title: { display: true, text: 'Sentiment Percentage' }
-                        },
-                        y: {
-                            stacked: true,
-                            grid: { display: false }
-                        }
+                        x: { stacked: true, display: false, max: 100 },
+                        y: { stacked: true, display: false }
                     },
                     plugins: {
-                        ...tooltipTitleCallback.plugins,
-                         title: { display: true, text: 'Sentiment Breakdown by Platform', font: { size: 16 } },
-                        legend: { position: 'bottom' }
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
                     }
                 }
             });
 
-            var ctxRadar = document.getElementById('themesRadar').getContext('2d');
+            // 2. Social Media Platform Charts
+            function createPlatformChart(canvasId, data, label) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [label],
+                        datasets: [
+                            { label: 'Positive', data: [data[0]], backgroundColor: brilliantBlues.purple },
+                            { label: 'Neutral', data: [data[1]], backgroundColor: brilliantBlues.grey },
+                            { label: 'Negative', data: [data[2]], backgroundColor: brilliantBlues.red }
+                        ]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { stacked: true, display: false, max: 100 },
+                            y: { stacked: true, display: false }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Example data for each platform
+            createPlatformChart('linkedinChart', [82, 13, 5], 'LinkedIn');
+            createPlatformChart('xChart', [65, 24, 11], 'X (Twitter)');
+            createPlatformChart('redditChart', [58, 21, 21], 'Reddit');
+
+            // 3. Themes Radar Chart
+            const ctxRadar = document.getElementById('themesRadar').getContext('2d');
             new Chart(ctxRadar, {
                 type: 'radar',
                 data: {
-                    labels: ['Societal Impact', 'Collaboration', 'Global Accessibility', ['Pace of', 'Innovation'], ['Ethical', 'Concerns']],
+                    labels: [
+                        'Societal Impact (SDGs)',
+                        'Collaboration & Open Science',
+                        'Pace of Innovation',
+                        'Global Accessibility',
+                        'Ethical Concerns'
+                    ],
                     datasets: [{
-                        label: 'Discussion Volume',
-                        data: [95, 90, 80, 65, 30],
+                        label: 'Theme Prominence',
+                        data: [95, 90, 72, 87, 35],
                         backgroundColor: 'rgba(102, 81, 145, 0.2)',
                         borderColor: brilliantBlues.purple,
                         pointBackgroundColor: brilliantBlues.purple,
@@ -314,8 +148,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        ...tooltipTitleCallback.plugins,
-                         title: { display: true, text: 'Prominence of Discussion Themes', font: { size: 16 } },
+                        title: { display: true, text: 'Prominence of Discussion Themes', font: { size: 16 } },
                         legend: { display: false }
                     },
                     scales: {
@@ -329,35 +162,39 @@
                     }
                 }
             });
-            
-            var ctxLine = document.getElementById('sentimentTrend').getContext('2d');
+
+            // 4. Sentiment Trend Line Chart
+            const ctxLine = document.getElementById('sentimentTrend').getContext('2d');
             new Chart(ctxLine, {
                 type: 'line',
                 data: {
-                    labels: ['Launch (Mar 2024)', 'Whitepaper (Oct 2024)', 'IYQ Event (Feb 2025)', 'Hackathon (Jul 2025)', 'Current (Oct 2025)'],
-                    datasets: [{
-                        label: 'Positive Mentions',
-                        data: [80, 75, 85, 82, 88],
-                        borderColor: brilliantBlues.purple,
-                        backgroundColor: 'rgba(102, 81, 145, 0.1)',
-                        fill: true,
-                        tension: 0.3
-                    },{
-                        label: 'Neutral Mentions',
-                        data: [18, 22, 13, 16, 10],
-                        borderColor: brilliantBlues.grey,
-                        backgroundColor: 'rgba(209, 213, 219, 0.1)',
-                        fill: true,
-                         tension: 0.3
-                    }]
+                    labels: [
+                        'Mar 2024', 'May 2024', 'Jul 2024', 'Sep 2024', 'Nov 2024',
+                        'Jan 2025', 'Mar 2025', 'May 2025', 'Jul 2025', 'Sep 2025'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Positive Mentions',
+                            data: [120, 155, 200, 290, 320, 300, 340, 400, 380, 390],
+                            borderColor: brilliantBlues.purple,
+                            backgroundColor: 'rgba(102, 81, 145, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Neutral Mentions',
+                            data: [40, 50, 60, 80, 100, 90, 95, 110, 105, 110],
+                            borderColor: brilliantBlues.grey,
+                            backgroundColor: 'rgba(209, 213, 219, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                     plugins: {
-                         ...tooltipTitleCallback.plugins,
-                         legend: { position: 'bottom' }
-                     },
+                    plugins: { legend: { position: 'bottom' } },
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -370,4 +207,3 @@
     </script>
 </body>
 </html>
-
